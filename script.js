@@ -1,23 +1,24 @@
 console.log("script started");
+let smallest = 50;
 
 //start the game
 function start() {
-    createSquare(50);
-    createSquare(80);
-    createSquare(90);
-    createSquare(110)
+    createSquare(50, "red");
+    createSquare(80, "green");
+    createSquare(90, "blue");
+    createSquare(110, "black")
     console.log(Math.random() * 1000);
 }
 
 //creates a square
-function createSquare(size) {
+function createSquare(size, color) {
     //create element (div)
     let square = document.createElement("div");
 
     //set some style to make a square
-    square.style.backgroundColor = "darkred";
-    square.style.width = "100px";
-    square.style.height = "100px";
+    square.style.backgroundColor = color;
+    square.style.width = size + "px";
+    square.style.height = size + "px";
     square.style.position = "absolute";
     square.style.borderRadius = "16px";
     square.style.top = getRandomY() + "px";
@@ -25,11 +26,14 @@ function createSquare(size) {
 
     //add it to the page
     document.body.appendChild(square);
+
+    //add click event
+    square.addEventListener("click", handleClick);
 }
 
 //generate a random x coordinate
 function getRandomX(){
-    let randX = Math.random * window.innerWidth;
+    let randX = Math.random() * window.innerWidth;
     return randX;
 }
 
@@ -37,4 +41,11 @@ function getRandomX(){
 function getRandomY() {
     let randY = Math.random() * window.innerHeight;
     return randY;
+}
+
+// Handle the player clicking a square
+function handleClick(event){
+    let square = event.target;
+    console.log(square);
+    //make size pattern i.e. increase. by the smae amount each 10, 20, 30, ...
 }
